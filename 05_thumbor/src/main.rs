@@ -6,7 +6,7 @@ use axum::{
     Router,
 };
 use bytes::Bytes;
-// use image::ImageOutputFormat;
+use image::ImageOutputFormat;
 use lru::LruCache;
 use percent_encoding::{percent_decode_str, percent_encode, NON_ALPHANUMERIC};
 use serde::Deserialize;
@@ -25,8 +25,12 @@ use tracing::{info, instrument};
 
 // 引入 protobuf 生成的代码
 mod pb;
+mod engine;
 
+use engine::Photon;
 use pb::*;
+
+use crate::engine::Engine;
 
 // 参数使用 serde 做 Deserialize，axum 会自动识别并解析
 #[derive(Deserialize)]
@@ -41,10 +45,10 @@ type Cache = Arc<Mutex<LruCache<u64, Bytes>>>;
 async fn main() {
     // 初始化 tracing
     tracing_subscriber::fmt::init();
-    let cache: Cache = Arc::new(Mutex::new(LruCache::new(NonZeroUsize::new(1024).unwrap())));
+    let cache: Cache = Arc::new(Mutex::new(LruCache::new(NonZeroUsize::new(2).unwrap())));
     // 构建路由
     let app = Router::new()
-        // `GET /image` 会执行 generate 函数，并把 spec 和 url 传递过去
+        // `GET /` 会执行
         .route("/image/:spec/:url", get(generate))
         .layer(
             ServiceBuilder::new()
@@ -55,9 +59,7 @@ async fn main() {
     // 运行 web 服务器
     let addr = "127.0.0.1:3000".parse().unwrap();
     print_test_url("https://images.pexels.com/photos/1562477/pexels-photo-1562477.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
-
     info!("Listening on {}", addr);
-
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
@@ -66,11 +68,12 @@ async fn main() {
 
 // httpie get "http://localhost:3000/image/CgoKCAjYBBCgBiADCgY6BAgUEBQKBDICCAM/https://images.pexels.com/photos/2470905/pexels-photo-2470905.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
 // 通过 httpie 尝试请求下
+// basic handler that responds with a static string
 async fn generate(
     Path(Params { spec, url }): Path<Params>,
     Extension(cache): Extension<Cache>,
 ) -> Result<(HeaderMap, Vec<u8>), StatusCode> {
-    let _spec: ImageSpec = spec
+    let spec: ImageSpec = spec
         .as_str()
         .try_into()
         .map_err(|_| StatusCode::BAD_REQUEST)?;
@@ -80,12 +83,19 @@ async fn generate(
         .await
         .map_err(|_| StatusCode::BAD_REQUEST)?;
 
-    // TODO: 处理图片
+    // 使用 image engine 处理
+    let mut engine: Photon = data
+        .try_into()
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    engine.apply(&spec.specs);
+    // TODO: 这里目前类型写死了，应该使用 content negotiation
+    let image = engine.generate(ImageOutputFormat::Jpeg(85));
 
+    info!("Finished processing: image size {}", image.len());
     let mut headers = HeaderMap::new();
 
     headers.insert("content-type", HeaderValue::from_static("image/jpeg"));
-    Ok((headers, data.to_vec()))
+    Ok((headers, image))
 }
 
 #[instrument(level = "info", skip(cache))]
