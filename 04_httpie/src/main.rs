@@ -186,7 +186,7 @@ mod tests {
     #[test]
     fn parse_url_works() {
         assert!(parse_url("abc").is_err());
-        assert!(parse_url("http://abc.xyz").is_ok());
+        assert!(parse_url("https://abc.xyz").is_ok());
         assert!(parse_url("https://httpbin.org/post").is_ok());
     }
 
