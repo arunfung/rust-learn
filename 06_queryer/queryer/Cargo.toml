@@ -8,11 +8,14 @@ edition = "2021"
 [[example]]
 name = "dialect"
 
+[[example]]
+name = "covid"
+
 [dependencies]
 anyhow = "1" # 错误处理，对于库应该用 thiserror
 async-trait = "0.1" # 允许 trait 里有 async fn
 sqlparser = "0.23" # SQL 解析器
-polars = { version = "0.23", features = ["json", "lazy"] } # DataFrame 库
+polars = { version = "0.24", features = ["json", "lazy"] } # DataFrame 库
 reqwest = { version = "0.11", default-features = false, features = ["json", "rustls-tls"] } # HTTP 客户端
 tokio = { version = "1", features = ["fs"]} # 异步库，需要异步文件处理
 tracing = "0.1" # 日志处理
