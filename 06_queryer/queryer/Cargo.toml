@@ -11,6 +11,9 @@ name = "dialect"
 [[example]]
 name = "covid"
 
+[[example]]
+name = "covid19"
+
 [dependencies]
 anyhow = "1" # 错误处理，对于库应该用 thiserror
 async-trait = "0.1" # 允许 trait 里有 async fn
