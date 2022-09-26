@@ -38,7 +38,7 @@ impl DataSet {
     /// 从 DataSet 转换成 csv
     pub fn to_csv(&mut self) -> Result<String> {
         let mut buf = Vec::new();
-        let mut writer = CsvWriter::new(&mut buf);
+        let writer = CsvWriter::new(&mut buf);
         writer.finish(self)?;
         Ok(String::from_utf8(buf)?)
     }
@@ -75,10 +75,10 @@ pub async fn query<T: AsRef<str>>(sql: T) -> Result<DataSet> {
 
     filtered = order_by
         .into_iter()
-        .fold(filtered, |acc, (col, desc)| acc.sort(&col, Default::default()));
+        .fold(filtered, |acc, (col, desc)| acc.sort(&col, desc));
 
     if offset.is_some() || limit.is_some() {
-        filtered = filtered.slice(offset.unwrap_or(0), limit.unwrap_or(usize::MAX) as IdxSize);
+        filtered = filtered.slice(offset.unwrap_or(0), limit.unwrap_or(usize::MAX));
     }
 
     Ok(DataSet(filtered.select(selection).collect()?))
