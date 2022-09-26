@@ -3,4 +3,5 @@
 members = [
     "queryer",
     "queryer-py",
+    "queryer-js",
 ]
