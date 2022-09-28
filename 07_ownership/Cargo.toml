@@ -7,6 +7,10 @@ edition = "2021"
 name = "ownership1"
 path = "src/ownership1.rs"
 
+[[bin]]
+name = "ownership_error"
+path = "src/ownership_error.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
