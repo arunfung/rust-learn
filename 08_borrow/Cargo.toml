@@ -7,6 +7,10 @@ edition = "2021"
 name = "ownership_reference"
 path = "src/ownership_reference.rs"
 
+[[bin]]
+name = "local_ref"
+path = "src/local_ref.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
