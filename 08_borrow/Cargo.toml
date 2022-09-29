@@ -15,6 +15,10 @@ path = "src/local_ref.rs"
 name = "heap_reference_stack"
 path = "src/heap_reference_stack.rs"
 
+[[bin]]
+name = "heap_reference_stack_outlive"
+path = "src/heap_reference_stack_outlive.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
