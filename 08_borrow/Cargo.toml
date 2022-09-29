@@ -11,6 +11,10 @@ path = "src/ownership_reference.rs"
 name = "local_ref"
 path = "src/local_ref.rs"
 
+[[bin]]
+name = "heap_reference_stack"
+path = "src/heap_reference_stack.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
