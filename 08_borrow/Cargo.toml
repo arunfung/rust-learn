@@ -19,6 +19,9 @@ path = "src/heap_reference_stack.rs"
 name = "heap_reference_stack_outlive"
 path = "src/heap_reference_stack_outlive.rs"
 
+[[bin]]
+name = "multiple_mut_ref"
+path = "src/multiple_mut_ref.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
