@@ -39,6 +39,10 @@ path = "src/multiple_mut_ref2.rs"
 name = "multiple_mut_ref_string"
 path = "src/multiple_mut_ref_string.rs"
 
+[[bin]]
+name = "reborrow"
+path = "src/reborrow.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
