@@ -31,6 +31,10 @@ path = "src/multiple_mut_ref1.rs"
 name = "vec_grow"
 path = "src/vec_grow.rs"
 
+[[bin]]
+name = "multiple_mut_ref2"
+path = "src/multiple_mut_ref2.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
