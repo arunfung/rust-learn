@@ -34,4 +34,11 @@ fn main() {
     node1.update_downstream(Rc::new(node3));
     node2.update_downstream(node1.get_downstream().unwrap());
     println!("node1: {:?}, node2: {:?}", node1, node2);
+
+    // 无法编译通过
+    // let node5 = Node::new(5);
+    // let node3 = node1.get_downstream().unwrap();
+    // node3.update_downstream(Rc::new(node5));
+
+    // println!("node1: {:?}, node2: {:?}", node1, node2);
 }
