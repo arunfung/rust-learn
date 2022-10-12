@@ -21,6 +21,10 @@ path = "src/lifetime1.rs"
 name = "lifetime3"
 path = "src/lifetime3.rs"
 
+[[bin]]
+name = "lifetime4"
+path = "src/lifetime4.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
