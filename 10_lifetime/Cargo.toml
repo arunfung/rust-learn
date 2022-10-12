@@ -12,6 +12,11 @@ edition = "2021"
 name = "lifetime1"
 path = "src/lifetime1.rs"
 
+# 如果尝试编译 lifetime2 会因为生命周期出错
+# [[bin]]
+# name = "lifetime2"
+# path = "src/lifetime2.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
