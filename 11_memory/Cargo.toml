@@ -3,6 +3,9 @@ name = "memory"
 version = "0.1.0"
 edition = "2021"
 
+[[example]]
+name = "drop"
+
 [[bin]]
 name = "alignment"
 path = "src/alignment.rs"
