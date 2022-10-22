@@ -37,6 +37,7 @@ fn main() {
     show_size!(&[u8]);
 
     show_size!(String);
+    show_size!(Result<String, ()>);
     show_size!(Vec<u8>);
     show_size!(HashMap<String, String>);
     show_size!(E);
