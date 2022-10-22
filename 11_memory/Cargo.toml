@@ -6,6 +6,9 @@ edition = "2021"
 [[example]]
 name = "drop"
 
+[[example]]
+name = "student"
+
 [[bin]]
 name = "alignment"
 path = "src/alignment.rs"
