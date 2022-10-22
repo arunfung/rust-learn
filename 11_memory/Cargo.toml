@@ -24,6 +24,11 @@ path = "src/size.rs"
 name = "align"
 path = "src/align.rs"
 
+[[bin]]
+name = "lazy_static"
+path = "src/lazy_static.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+lazy_static = "1" # 通过宏更方便地初始化静态变量
