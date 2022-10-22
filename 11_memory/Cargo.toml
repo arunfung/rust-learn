@@ -20,6 +20,10 @@ path = "src/alignment.rs"
 name = "size"
 path = "src/size.rs"
 
+[[bin]]
+name = "align"
+path = "src/align.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
