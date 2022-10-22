@@ -9,6 +9,9 @@ name = "drop"
 [[example]]
 name = "student"
 
+[[example]]
+name = "raii"
+
 [[bin]]
 name = "alignment"
 path = "src/alignment.rs"
