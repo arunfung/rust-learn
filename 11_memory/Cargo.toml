@@ -28,6 +28,10 @@ path = "src/align.rs"
 name = "lazy_static"
 path = "src/lazy_static.rs"
 
+[[bin]]
+name = "lifetime"
+path = "src/lifetime.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
