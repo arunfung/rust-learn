@@ -15,6 +15,10 @@ path = "src/ip.rs"
 name = "constant"
 path = "src/constant.rs"
 
+[[bin]]
+name = "id"
+path = "src/id.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
