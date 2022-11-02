@@ -15,6 +15,10 @@ path = "src/parse.rs"
 name = "parse1"
 path = "src/parse1.rs"
 
+[[bin]]
+name = "parse1_type"
+path = "src/parse1_type.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
