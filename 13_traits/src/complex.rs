@@ -29,11 +29,22 @@ impl Add for &Complex {
     // 注意返回值不应该是 Self 了，因为此时 Self 是 &Complex
     type Output = Complex;
 
-    // 注意 add 第一个参数是 self，会移动所有权
     fn add(self, rhs: Self) -> Self::Output {
         let real = self.real + rhs.real;
         let imagine = self.imagine + rhs.imagine;
         Complex::new(real, imagine)
+    }
+}
+
+// 因为 Add<Rhs = Self> 是个泛型 trait，我们可以为 Complex 实现 Add<f64>
+impl Add<f64> for &Complex {
+    // 注意返回值不应该是 Self 了，因为此时 Self 是 &Complex
+    type Output = Complex;
+
+    // rhs 现在是 f64
+    fn add(self, rhs: f64) -> Self::Output {
+        let real = self.real + rhs;
+        Complex::new(real, self.imagine)
     }
 }
 
@@ -42,5 +53,6 @@ fn main() {
     let c2 = Complex::new(2 as f64, 3.0);
     // &c1 + &c2，这样所有权就不会移动了
     println!("{:?}", &c1 + &c2);
+    println!("{:?}", &c1 + 5.0);
     println!("{:?}", c1 + c2);
 }
