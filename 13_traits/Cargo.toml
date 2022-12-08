@@ -43,6 +43,10 @@ path = "src/trait_object.rs"
 name = "trait_object_internal"
 path = "src/trait_object_internal.rs"
 
+[[bin]]
+name = "iterator"
+path = "src/iterator.rs"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

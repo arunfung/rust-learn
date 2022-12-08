@@ -1,6 +1,6 @@
 use std::ops::Add;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 struct Complex {
     real: f64,
     imagine: f64,
@@ -51,6 +51,7 @@ impl Add<f64> for &Complex {
 fn main() {
     let c1 = Complex::new(1.0, 1f64);
     let c2 = Complex::new(2 as f64, 3.0);
+    println!("{:?}", c1 + c2); // 将 Complex 结构添加 Copy, Clone trait 就不会所有权移动了
     // &c1 + &c2，这样所有权就不会移动了
     println!("{:?}", &c1 + &c2);
     println!("{:?}", &c1 + 5.0);
