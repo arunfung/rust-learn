@@ -17,6 +17,7 @@ impl Animal for Dog {
     }
 }
 
+// trait 的静态分派是使用泛型函数
 fn name(animal: impl Animal) -> &'static str {
     animal.name()
 }
