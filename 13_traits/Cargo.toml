@@ -39,6 +39,10 @@ path = "src/formatter.rs"
 name = "trait_object"
 path = "src/trait_object.rs"
 
+[[bin]]
+name = "trait_object_internal"
+path = "src/trait_object_internal.rs"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
