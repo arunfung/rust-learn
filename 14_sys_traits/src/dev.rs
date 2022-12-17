@@ -1,4 +1,7 @@
 #[allow(dead_code)]
+// 因为 String 类型没有实现 Copy。 因此，Developer 数据结构只能 clone，无法 copy
+// Developer 类型在做参数传递时，会执行 Move 语义，而 Language 会 执行 Copy 语义。
+// #[derive(Debug, Clone, Copy)]
 #[derive(Debug, Clone)]
 struct Developer {
     name: String,
@@ -7,7 +10,7 @@ struct Developer {
 }
 
 #[allow(dead_code)]
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 enum Language {
     Rust,
     TypeScript,
