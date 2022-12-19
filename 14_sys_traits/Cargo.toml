@@ -7,6 +7,10 @@ edition = "2021"
 name = "dev"
 path = "src/dev.rs"
 
+[[bin]]
+name = "copy_drop"
+path = "src/copy_drop.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
