@@ -27,6 +27,10 @@ path = "src/convert.rs"
 name = "deref"
 path = "src/deref.rs"
 
+[[bin]]
+name = "default"
+path = "src/default.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
