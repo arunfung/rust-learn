@@ -11,6 +11,10 @@ path = "src/dev.rs"
 name = "copy_drop"
 path = "src/copy_drop.rs"
 
+[[bin]]
+name = "sized"
+path = "src/sized.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
