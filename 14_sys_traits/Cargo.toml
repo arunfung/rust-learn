@@ -31,6 +31,10 @@ path = "src/deref.rs"
 name = "default"
 path = "src/default.rs"
 
+[[bin]]
+name = "linked_list"
+path = "src/linked_list.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
