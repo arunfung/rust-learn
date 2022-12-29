@@ -23,6 +23,10 @@ path = "src/send_sync.rs"
 name = "convert"
 path = "src/convert.rs"
 
+[[bin]]
+name = "deref"
+path = "src/deref.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
