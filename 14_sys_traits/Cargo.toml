@@ -15,6 +15,10 @@ path = "src/copy_drop.rs"
 name = "sized"
 path = "src/sized.rs"
 
+[[bin]]
+name = "send_sync"
+path = "src/send_sync.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
