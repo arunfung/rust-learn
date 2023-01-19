@@ -4,6 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [[bin]]
+name = "allocator"
+path = "src/allocator.rs"
+
+[[bin]]
 name = "box"
 path = "src/box.rs"
 
