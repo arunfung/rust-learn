@@ -15,6 +15,11 @@ path = "src/box.rs"
 name = "borrow"
 path = "src/borrow.rs"
 
+[[bin]]
+name = "cow1"
+path = "src/cow1.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+url = "2"
