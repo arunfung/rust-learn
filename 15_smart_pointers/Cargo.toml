@@ -11,6 +11,10 @@ path = "src/allocator.rs"
 name = "box"
 path = "src/box.rs"
 
+[[bin]]
+name = "borrow"
+path = "src/borrow.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
