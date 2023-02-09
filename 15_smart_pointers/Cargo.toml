@@ -31,6 +31,10 @@ path = "src/guard.rs"
 name = "guard1"
 path = "src/guard1.rs"
 
+[[bin]]
+name = "mystring"
+path = "src/mystring.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
