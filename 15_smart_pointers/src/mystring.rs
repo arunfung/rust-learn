@@ -81,4 +81,25 @@ fn main() {
     let len1 = std::mem::size_of::<MyString>();
     let len2 = std::mem::size_of::<MiniString>();
     println!("Len: MyString {}, MiniString {}", len1, len2);
+
+    let s1: MyString = "Hello world".into();
+    let s2: MyString = "这是一个超过了三十个字节的很长很长的字符串".into();
+
+    // debug 输出
+    println!("s1: {:?}, s2: {:?}", s1, s2);
+
+    // display 输出
+    println!(
+        "s1: {}({} bytes, {} chars), s2: {}({} bytes, {} chars)",
+        s1,
+        s1.len(),
+        s1.chars().count(),
+        s2,
+        s2.len(),
+        s2.chars().count()
+    );
+
+    // MyString 可以使用一切 &str 接口，感谢 Rust 的自动 Deref
+    assert!(s1.ends_with("world"));
+    assert!(s2.starts_with('这'));
 }
