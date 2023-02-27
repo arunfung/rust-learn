@@ -95,6 +95,29 @@ impl fmt::Display for MyString {
     }
 }
 
+impl MyString {
+    pub fn push_str(&mut self, s: &str) {
+        match *self {
+            MyString::Inline(ref mut v) => {
+                let len = v.len();
+                let len1 = s.len();
+                if len + len1 > MINI_STRING_MAX_LEN {
+                    let mut owned = v.deref().to_string();
+                    owned.push_str(s);
+                    *self = MyString::Standard(owned);
+                } else {
+                    let total = len + len1;
+                    v.data[len..len + len1].copy_from_slice(s.as_bytes());
+                    v.len = total as u8;
+                }
+            }
+            MyString::Standard(ref mut v) => {
+                v.push_str(s);
+            }
+        }
+    }
+}
+
 fn main() {
     let len1 = std::mem::size_of::<MyString>();
     let len2 = std::mem::size_of::<MiniString>();
@@ -126,4 +149,9 @@ fn main() {
     // From<T: AsRef<str>> 的实现会导致额外的复制
     let s3: MyString = s.into();
     println!("s3: {:p}", &*s3);
+
+    let mut s4: MyString = "Hello Tyr! ".into();
+    println!("s4: {:?}", s4);
+    s4.push_str("这是一个超过了三十个字节的很长很长的字符串");
+    println!("s4: {:?}", s4);
 }
