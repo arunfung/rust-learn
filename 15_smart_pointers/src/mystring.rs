@@ -62,10 +62,28 @@ impl Deref for MyString {
     }
 }
 
-impl From<&str> for MyString {
-    fn from(s: &str) -> Self {
-        match s.len() > MINI_STRING_MAX_LEN {
-            true => Self::Standard(s.to_owned()),
+// impl From<&str> for MyString {
+//     fn from(s: &str) -> Self {
+//         match s.len() > MINI_STRING_MAX_LEN {
+//             true => Self::Standard(s.to_owned()),
+//             _ => Self::Inline(MiniString::new(s)),
+//         }
+//     }
+// }
+//
+// impl From<String> for MyString {
+//     fn from(s: String) -> Self {
+//         match s.len() > MINI_STRING_MAX_LEN {
+//             true => Self::Standard(s.to_owned()),
+//             _ => Self::Inline(MiniString::new(s)),
+//         }
+//     }
+// }
+
+impl<T> From<T> for MyString where T: AsRef<str> {
+    fn from(s: T) -> Self {
+        match s.as_ref().len() > MINI_STRING_MAX_LEN {
+            true => Self::Standard(s.as_ref().to_owned()),
             _ => Self::Inline(MiniString::new(s)),
         }
     }
@@ -102,4 +120,10 @@ fn main() {
     // MyString 可以使用一切 &str 接口，感谢 Rust 的自动 Deref
     assert!(s1.ends_with("world"));
     assert!(s2.starts_with('这'));
+
+    let s = String::from("这是一个超过了三十个字节的很长很长的字符串");
+    println!("s: {:p}", &*s);
+    // From<T: AsRef<str>> 的实现会导致额外的复制
+    let s3: MyString = s.into();
+    println!("s3: {:p}", &*s3);
 }
