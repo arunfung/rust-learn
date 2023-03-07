@@ -15,6 +15,10 @@ path = "src/slice1.rs"
 name = "slice2"
 path = "src/slice2.rs"
 
+[[bin]]
+name = "slice3"
+path = "src/slice3.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
