@@ -19,6 +19,11 @@ path = "src/slice2.rs"
 name = "slice3"
 path = "src/slice3.rs"
 
+[[bin]]
+name = "iter"
+path = "src/iter.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+itertools = "0.10"
