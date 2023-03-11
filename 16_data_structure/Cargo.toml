@@ -35,6 +35,10 @@ path = "src/slice5.rs"
 name = "boxed"
 path = "src/boxed.rs"
 
+[[bin]]
+name = "iter_ext"
+path = "src/iter_ext.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
