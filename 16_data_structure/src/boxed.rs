@@ -20,4 +20,12 @@ fn main() {
     b2[0] = 2;
     // b2.push(6);
     println!("b2: {:?}", b2);
+
+    // 注意 Box<[T]> 和 Box<[T; n]> 并不相同
+    let b3 = Box::new([2, 2, 3, 4, 5]);
+    println!("b3: {:?}", b3);
+
+    // b2 和 b3 相等，但 b3.deref() 和 v2 无法比较
+    assert!(b2 == b3);
+    // assert!(b3.deref() == v2);
 }
