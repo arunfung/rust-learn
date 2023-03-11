@@ -32,3 +32,12 @@ fn print_slice2<T, U>(s: T)
     where
         T: AsRef<[U]>,
         U: fmt::Debug, { println!("{:?}", s.as_ref()); }
+
+#[allow(dead_code)]
+fn print_slice3<T, U>(s: T)
+    where
+        T: AsRef<U>,
+        U: fmt::Debug,
+{
+    println!("{:?}", s.as_ref());
+}
