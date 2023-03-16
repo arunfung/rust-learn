@@ -6,6 +6,10 @@ fn main() {
 
     map.insert('a', 1);
     explain("added 1", &map);
+
+    map.insert('b', 2);
+    map.insert('c', 3);
+    explain("added 3", &map);
 }
 
 fn explain<K, V>(name: &str, map: &HashMap<K, V>) {
