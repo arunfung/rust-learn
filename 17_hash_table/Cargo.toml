@@ -7,6 +7,10 @@ edition = "2021"
 name = "hashmap1"
 path = "src/hashmap1.rs"
 
+[[bin]]
+name = "hashmap2"
+path = "src/hashmap2.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
