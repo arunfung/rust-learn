@@ -17,6 +17,12 @@ fn main() {
     // get 时需要使用引用，并且也返回引用
     assert_eq!(map.get(&'a'), Some(&1));
     assert_eq!(map.get_key_value(&'b'), Some((&'b', &2)));
+
+    map.remove(&'a');
+    // 删除后就找不到了
+    assert!(!map.contains_key(&'a'));
+    assert_eq!(map.get(&'a'), None);
+    explain("removed", &map);
 }
 
 fn explain<K, V>(name: &str, map: &HashMap<K, V>) {
