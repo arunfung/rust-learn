@@ -23,6 +23,10 @@ fn main() {
     assert!(!map.contains_key(&'a'));
     assert_eq!(map.get(&'a'), None);
     explain("removed", &map);
+
+    // shrink 后哈希表变小
+    map.shrink_to_fit();
+    explain("shrinked", &map);
 }
 
 fn explain<K, V>(name: &str, map: &HashMap<K, V>) {
