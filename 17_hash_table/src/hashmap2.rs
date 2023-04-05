@@ -6,6 +6,18 @@ fn main() {
 
     map.insert('a', 1);
     let mut map = explain("added 1", map);
+    map.insert('b', 2);
+    map.insert('c', 3);
+
+    let mut map = explain("added 3", map);
+
+    map.insert('d', 4);
+
+    let mut map = explain("added 4", map);
+
+    map.remove(&'a');
+
+    explain("final", map);
 }
 
 // HashMap 结构有两个 u64 的 RandomState，然后是四个 usize，
