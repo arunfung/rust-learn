@@ -11,6 +11,10 @@ path = "src/hashmap1.rs"
 name = "hashmap2"
 path = "src/hashmap2.rs"
 
+[[bin]]
+name = "hash"
+path = "src/hash.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
