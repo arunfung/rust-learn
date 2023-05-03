@@ -16,12 +16,21 @@ fn main() {
     println!("panic captured: {:#?}", result);
 }
 
+// 可以极大避免遗忘错误的显示处理, 但如果我们并不关心错误，只需要传递错误，那么就需要使用 ? 操作符
 fn read_file(path: &str) -> Result<String, DataStoreError> {
     let mut file = File::open(path)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     Ok(contents)
 }
+
+// Rust 还为 Option 和 Result 提供了大量的辅助函数，如 map / map_err / and_then
+// Ok(data)
+//     .and_then(validate)
+//     .and_then(process)
+//     .map(transform)
+//     .and_then(store)
+//     .map_error()
 
 #[derive(Error, Debug)]
 #[non_exhaustive]
