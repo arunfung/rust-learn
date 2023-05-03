@@ -1,7 +1,9 @@
-use std::{io, panic};
+use std::io::Read;
+use std::{fs::File, io, panic};
 use thiserror::Error;
 
 fn main() {
+    let _result = read_file("hello.txt");
     let result = panic::catch_unwind(|| {
         println!("hello");
     });
@@ -12,6 +14,13 @@ fn main() {
     });
     assert!(result.is_err());
     println!("panic captured: {:#?}", result);
+}
+
+fn read_file(path: &str) -> Result<String, DataStoreError> {
+    let mut file = File::open(path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    Ok(contents)
 }
 
 #[derive(Error, Debug)]
