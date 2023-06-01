@@ -11,6 +11,9 @@ fn main() {
     table.insert("hello", "world");
     // 如果捕获一个引用，长度为 8
     let c3 = || println!("hello: {}", name);
+
+    // name: String, // (ptr|cap|len)=24字节
+    //table: HashMap<&str, &str> // (RandomState(16)|mask|ctrl|left|len)=48字节
     // 捕获移动的数据 name1(长度 24) + table(长度 48)，closure 长度 72
     let c4 = move || println!("hello: {}, {:?}", name1, table);
     let name2 = name.clone();
