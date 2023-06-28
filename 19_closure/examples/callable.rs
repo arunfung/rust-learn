@@ -16,18 +16,27 @@ impl Executor for BashExecutor {
 }
 
 // 看看我给的 tonic 的例子，想想怎么实现让 27 行可以正常执行
+impl<F> Executor for F
+where
+    F: Fn(&str) -> Result<String, &'static str>,
+{
+    fn execute(&self, cmd: &str) -> Result<String, &'static str> {
+        self(cmd)
+    }
+}
 
 fn main() {
     let env = "PATH=/usr/bin".to_string();
 
     let cmd = "cat /etc/passwd";
-    let r1 = execute(cmd, BashExecutor { env });
+    let bash = BashExecutor { env: env.clone() };
+    let r1 = execute(cmd, bash);
     println!("{:?}", r1);
 
-    // let r2 = execute(cmd, |cmd: &str| {
-    //     Ok(format!("fake fish execute: env: {}, cmd: {}", env, cmd))
-    // });
-    // println!("{:?}", r2);
+    let r2 = execute(cmd, |cmd: &str| {
+        Ok(format!("fake fish execute: env: {}, cmd: {}", env, cmd))
+    });
+    println!("{:?}", r2);
 }
 
 fn execute(cmd: &str, exec: impl Executor) -> Result<String, &'static str> {
