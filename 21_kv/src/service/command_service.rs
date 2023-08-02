@@ -42,6 +42,15 @@ impl CommandService for Hdel {
     }
 }
 
+impl CommandService for Hexist {
+    fn execute(self, store: &impl Storage) -> CommandResponse {
+        match store.contains(&self.table, &self.key) {
+            Ok(v) => v.into(),
+            Err(e) => e.into(),
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

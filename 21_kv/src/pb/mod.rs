@@ -43,6 +43,16 @@ impl CommandRequest {
             })),
         }
     }
+
+    /// 创建 HEXIST 命令
+    pub fn new_hexist(table: impl Into<String>, key: impl Into<String>) -> Self {
+        Self {
+            request_data: Some(RequestData::Hexist(Hexist {
+                table: table.into(),
+                key: key.into(),
+            })),
+        }
+    }
 }
 
 impl Kvpair {
@@ -82,12 +92,32 @@ impl From<i64> for Value {
     }
 }
 
+/// 从 bool 转换成 Value
+impl From<bool> for Value {
+    fn from(b: bool) -> Self {
+        Self {
+            value: Some(value::Value::Bool(b)),
+        }
+    }
+}
+
 /// 从 Value 转换成 CommandResponse
 impl From<Value> for CommandResponse {
     fn from(v: Value) -> Self {
         Self {
             status: StatusCode::OK.as_u16() as _,
             values: vec![v],
+            ..Default::default()
+        }
+    }
+}
+
+/// 从 bool 转换成 CommandResponse
+impl From<bool> for CommandResponse {
+    fn from(v: bool) -> Self {
+        Self {
+            status: StatusCode::OK.as_u16() as _,
+            values: vec![Value::from(v)],
             ..Default::default()
         }
     }

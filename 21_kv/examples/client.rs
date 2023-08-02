@@ -25,6 +25,14 @@ async fn main() -> Result<()> {
         info!("Got HET response {:?}", data);
     }
 
+    // 生成一个 HEXIST 命令
+    let exist_cmd = CommandRequest::new_hexist("table1", "hello");
+    // 发送 HEXIST 命令
+    client.send(exist_cmd).await?;
+    if let Some(Ok(data)) = client.next().await {
+        info!("Got HEXIST response 1 {:?}", data);
+    }
+
     // 生成一个 HGET 命令
     let get_cmd = CommandRequest::new_hget("table1", "hello");
     // 发送 HGET 命令
