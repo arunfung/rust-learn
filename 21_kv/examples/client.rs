@@ -19,11 +19,34 @@ async fn main() -> Result<()> {
 
     // 生成一个 HSET 命令
     let cmd = CommandRequest::new_hset("table1", "hello", "world".to_string().into());
-
     // 发送 HSET 命令
     client.send(cmd).await?;
     if let Some(Ok(data)) = client.next().await {
-        info!("Got response {:?}", data);
+        info!("Got HET response {:?}", data);
+    }
+
+    // 生成一个 HGET 命令
+    let get_cmd = CommandRequest::new_hget("table1", "hello");
+    // 发送 HGET 命令
+    client.send(get_cmd).await?;
+    if let Some(Ok(data)) = client.next().await {
+        info!("Got GET response 1 {:?}", data);
+    }
+
+    // 生成一个 HDEL 命令
+    let del_cmd = CommandRequest::new_hdel("table1", "hello");
+    // 发送 HDEL 命令
+    client.send(del_cmd).await?;
+    if let Some(Ok(data)) = client.next().await {
+        info!("Got HDEL response {:?}", data);
+    }
+
+    // 生成一个 HGET 命令
+    let get_cmd = CommandRequest::new_hget("table1", "hello");
+    // 发送 HGET 命令
+    client.send(get_cmd).await?;
+    if let Some(Ok(data)) = client.next().await {
+        info!("Got GET response 2 {:?}", data);
     }
 
     Ok(())

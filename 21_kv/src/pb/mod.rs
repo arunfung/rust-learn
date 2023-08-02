@@ -33,6 +33,16 @@ impl CommandRequest {
             })),
         }
     }
+
+    /// 创建 HDEL 命令
+    pub fn new_hdel(table: impl Into<String>, key: impl Into<String>) -> Self {
+        Self {
+            request_data: Some(RequestData::Hdel(Hdel {
+                table: table.into(),
+                key: key.into(),
+            })),
+        }
+    }
 }
 
 impl Kvpair {
